@@ -11,6 +11,8 @@ import { ReportComponent } from './report/report.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { certGuard } from '../guard/cert.guard';
 import { Not403Component } from './not403/not403.component';
+import { VitalSignComponent } from './vital-sign/vital-sign.component';
+import { SignEditComponent } from './vital-sign/sign-edit/sign-edit.component';
 
 export const pagesRoutes: Routes = [
   {
@@ -35,5 +37,13 @@ export const pagesRoutes: Routes = [
   { path: 'search', component: SearchComponent, canActivate: [certGuard] },
   { path: 'report', component: ReportComponent, canActivate: [certGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [certGuard] },
-  { path: 'not-403', component: Not403Component}
+  { path: 'not-403', component: Not403Component},
+  {
+    path: 'sign',
+    component: VitalSignComponent,
+    children: [
+      { path: 'new', component: SignEditComponent },
+      { path: 'edit/:id', component: SignEditComponent },
+    ], canActivate: [certGuard]
+  },
 ];

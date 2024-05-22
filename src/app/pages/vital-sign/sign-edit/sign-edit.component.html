@@ -1,0 +1,52 @@
+<form [formGroup]="form" class="example-container" (submit)="operate()">
+
+    <span class="title-edit">Vital Sign</span>
+
+    <mat-form-field>
+        <mat-label>Patients</mat-label>
+        <mat-select formControlName="patient">
+            @for (p of patients; track $index) {
+            <mat-option [value]="p">{{p.firstName}} {{p.lastName}}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary"  type="button" (click)="openDialog()">
+        <mat-icon>accessibility</mat-icon>
+        <span>New Patient</span>
+    </button>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Temperature" required formControlName="temperature">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Pulse" required formControlName="pulse">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Rate Respiratory" required formControlName="rateRespiratory">
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit">
+        <mat-icon>done</mat-icon>
+        <span>Done</span>
+    </button>
+
+    <button mat-raised-button color="accent" type="button" routerLink="/pages/sign">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+    </button>
+    
+
+</form>
